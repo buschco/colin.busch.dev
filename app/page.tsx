@@ -1,6 +1,6 @@
-export default function Home() {
+function Home() {
   return (
-    <main className="flex flex-col gap-8 text-black dark:text-slate-50">
+    <main className="flex flex-col gap-8">
       <div className="flex flex-row justify-between items-center gap-8">
         <div className="flex flex-col gap-1">
           <span className="text-lg">hey, I am</span>
@@ -21,15 +21,8 @@ export default function Home() {
         <div className="bg-purple-600 w-48 h-48 aspect-square rounded-full" />
       </div>
 
-      <h2>My philosophy</h2>
-      <h1 className="text-2xl font-bold italic text-center">
-        die kochen auch nur mit Wasser
-      </h1>
-
       <div>
-        <h2 className="text-slate-700 dark:text-slate-300 text-lg font-medium">
-          my history
-        </h2>
+        <h2 className="text-lg font-medium">my history</h2>
         <div className="flex flex-row items-center gap-1">
           <span className="text-purple-600 font-medium font-mono">2016</span>
         </div>
@@ -60,7 +53,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-row items-center gap-4">
-        <h2 className="whitespace-nowrap text-slate-700 dark:text-slate-300 text-lg font-medium">
+        <h2 className="whitespace-nowrap text-lg font-medium">
           my experiences
         </h2>
 
@@ -117,6 +110,47 @@ export default function Home() {
         I also love to work with d3 to display data in a playful way to our
         customers.
       </p>
+    </main>
+  );
+}
+
+const Row = ({ title, children }: { title: string; children: string }) => (
+  <div className="flex flex-row">
+    <pre className="flex flex-1">
+      <span className="hidden sm:block">{"type  "}</span>:{title}
+      <span className="hidden sm:block">{"<ENTER>"}</span>
+    </pre>
+    <div className="w-56">{children}</div>
+  </div>
+);
+
+export default function Home2() {
+  return (
+    <main className="container-sm mx-auto flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center">
+        <h1 className="text-center mb-4">Hey, I am Colin Busch</h1>
+
+        <div className="flex flex-1 flex-col mb-4">
+          <h2 className="text-center mx-4">
+            a developer who loves to bring{" "}
+            <span className="font-medium">UX</span> and{" "}
+            <span className="font-medium">DX</span> together 🤝
+          </h2>
+          <h2 className="text-center">some short text</h2>
+        </div>
+
+        <div className="flex flex-col self-stretch mb-4">
+          <Row title="help">if you are new!</Row>
+          <Row title="about">to learn more about me</Row>
+          <Row title="q">to exit</Row>
+        </div>
+
+        <span className="text-center">To contact me</span>
+
+        <div className="flex flex-col self-stretch mb-12">
+          <Row title="help">if you are new!</Row>
+        </div>
+      </div>
     </main>
   );
 }

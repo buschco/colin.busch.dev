@@ -12,7 +12,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className="max-w-xl mx-auto py-20 bg-slate-50 dark:bg-black">
+      <body className="max-w-xl mx-auto py-20 bg-bg text-normal font-mono">
         {children}
       </body>
     </html>
