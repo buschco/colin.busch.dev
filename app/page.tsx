@@ -60,7 +60,7 @@ export default function Home2() {
 
         <div className="flex flex-col self-stretch mb-12">
           <Row title="github" href="https://github.com/buschco">
-            for my github profile
+            to my github profile
           </Row>
           <Row title="email" href="mailto:colin@busch.dev">
             to get my email
