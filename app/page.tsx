@@ -1,3 +1,6 @@
+"use client";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
 function Home() {
   return (
     <main className="flex flex-col gap-8">
@@ -114,6 +117,8 @@ function Home() {
   );
 }
 
+const charWidth = 9.633;
+
 const Row = ({ title, children }: { title: string; children: string }) => (
   <div className="flex flex-row">
     <pre className="flex flex-1">
@@ -125,9 +130,39 @@ const Row = ({ title, children }: { title: string; children: string }) => (
 );
 
 export default function Home2() {
+  const [command, setCommand] = useState<string | void>();
+  const [pos, setPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [dim, setDim] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const mainRef = useRef<HTMLElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useLayoutEffect(() => {
+    const measure = mainRef.current;
+    if (measure == null) return;
+    setDim({ x: measure.clientWidth, y: measure.clientHeight });
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === ":") {
+        setCommand("");
+        console.log(inputRef.current?.focus);
+        inputRef.current?.focus();
+      } else if (event.key === "Escape") {
+        setCommand();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-4 p-4">
-      <div className="flex flex-col items-center">
+    <main
+      ref={mainRef}
+      onMouseMove={(e) => setPos({ x: e.clientX, y: e.clientY })}
+      className="flex flex-1 flex-col justify-center gap-4 p-8"
+    >
+      <div className="flex flex-col self-center items-center">
         <h1 className="text-center mb-4">Hey, I am Colin Busch</h1>
 
         <div className="flex flex-1 flex-col mb-4">
@@ -142,34 +177,63 @@ export default function Home2() {
         <div className="flex flex-col self-stretch mb-4">
           <Row title="help">if you are new!</Row>
           <Row title="about">to learn more about me</Row>
+          <Row title="fours">to play fours</Row>
           <Row title="q">to exit</Row>
         </div>
 
-        <span className="text-center">To contact me</span>
+        <span className="text-center">Where you can find me</span>
 
         <div className="flex flex-col self-stretch mb-12">
-          <Row title="help">if you are new!</Row>
+          <Row title="github">for my github profile</Row>
+          <Row title="email">to get my email</Row>
         </div>
       </div>
 
-      <div className="bg-bg3 absolute bottom-0 left-0 right-0 h-6 flex flex-row justify-between">
-        <div className="flex flex-row">
-          <div className="uppercase bg-accent text-bg3 font-bold px-2">
-            normal
+      <input
+        ref={inputRef}
+        value={command ?? ""}
+        onChange={(e) => setCommand(e.target.value)}
+        className="absolute bottom-0 left-0 right-0 bg-bg text-normal h-6"
+        type="text"
+      />
+
+      {command == null && (
+        <div
+          className={[
+            "bg-bg3",
+            "absolute bottom-0 left-0 right-0",
+            "h-6 flex flex-row justify-between",
+          ].join(" ")}
+        >
+          <div className="flex flex-row">
+            <div className="uppercase bg-accent text-bg3 font-bold px-2">
+              normal
+            </div>
+            <div className="bg-bg2 text-muted px-2 hidden sm:block">main</div>
+            <div className="text-muted px-2 bg-bg2 sm:bg-transparent">
+              page.tsx
+            </div>
           </div>
-          <div className="bg-bg2 text-muted px-2 hidden sm:block">main</div>
-          <div className="text-muted px-2 bg-bg2 sm:bg-transparent">
-            page.tsx
+          <div className="flex flex-row">
+            <div className="text-muted px-2 hidden sm:block">html</div>
+            <div className="bg-bg2 text-muted px-2 hidden sm:block">
+              {Math.round((pos.y / dim.y) * 100)}%
+            </div>
+            <div
+              className="uppercase bg-accent text-bg3 font-bold px-2 box-content"
+              style={{
+                width: Math.round(
+                  `${Math.round(dim.x / charWidth)}:${Math.round(dim.y / 24)}`
+                    .length * charWidth
+                ),
+              }}
+            >
+              {1 + Math.round(((pos.y / dim.y) * pos.y) / 24)}:
+              {1 + Math.round(((pos.x / dim.x) * pos.x) / charWidth)}
+            </div>
           </div>
         </div>
-        <div className="flex flex-row">
-          <div className="text-muted px-2 hidden sm:block">typescript.tsx</div>
-          <div className="bg-bg2 text-muted px-2 hidden sm:block">95%</div>
-          <div className="uppercase bg-accent text-bg3 font-bold px-2">
-            166:75
-          </div>
-        </div>
-      </div>
+      )}
     </main>
   );
 }
