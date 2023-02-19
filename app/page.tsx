@@ -1,5 +1,4 @@
-"use client";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 function Home() {
   return (
@@ -117,53 +116,36 @@ function Home() {
   );
 }
 
-const charWidth = 9.633;
+const Row = ({
+  title,
+  href,
+  children,
+}: {
+  href?: string;
+  title: string;
+  children: string;
+}) => {
+  const content = (
+    <div className="flex flex-row">
+      <pre className="flex flex-1">
+        <span className="hidden sm:block">{"type  "}</span>:{title}
+        <span className="hidden sm:block">{"<ENTER>"}</span>
+      </pre>
+      <div className="w-56">{children}</div>
+    </div>
+  );
 
-const Row = ({ title, children }: { title: string; children: string }) => (
-  <div className="flex flex-row">
-    <pre className="flex flex-1">
-      <span className="hidden sm:block">{"type  "}</span>:{title}
-      <span className="hidden sm:block">{"<ENTER>"}</span>
-    </pre>
-    <div className="w-56">{children}</div>
-  </div>
-);
+  if (href == null) {
+    return content;
+  }
+  return <Link href={href ?? `/${title}`}>{content}</Link>;
+};
 
 export default function Home2() {
-  const [command, setCommand] = useState<string | void>();
-  const [pos, setPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [dim, setDim] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const mainRef = useRef<HTMLElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useLayoutEffect(() => {
-    const measure = mainRef.current;
-    if (measure == null) return;
-    setDim({ x: measure.clientWidth, y: measure.clientHeight });
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === ":") {
-        setCommand("");
-        console.log(inputRef.current?.focus);
-        inputRef.current?.focus();
-      } else if (event.key === "Escape") {
-        setCommand();
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   return (
-    <main
-      ref={mainRef}
-      onMouseMove={(e) => setPos({ x: e.clientX, y: e.clientY })}
-      className="flex flex-1 flex-col justify-center gap-4 p-8"
-    >
+    <main className="flex flex-1 flex-col justify-center gap-4 p-8">
       <div className="flex flex-col self-center items-center">
-        <h1 className="text-center mb-4">Hey, I am Colin Busch</h1>
+        <h1 className="text-center">Hey, I am Colin Busch</h1>
 
         <div className="flex flex-1 flex-col mb-4">
           <h2 className="text-center mx-4">
@@ -171,69 +153,36 @@ export default function Home2() {
             <span className="font-medium">UX</span> and{" "}
             <span className="font-medium">DX</span> together 🤝
           </h2>
-          <h2 className="text-center">some short text</h2>
         </div>
+        <h2 className="text-center">here is what you can do:</h2>
 
         <div className="flex flex-col self-stretch mb-4">
-          <Row title="help">if you are new!</Row>
-          <Row title="about">to learn more about me</Row>
-          <Row title="fours">to play fours</Row>
-          <Row title="q">to exit</Row>
+          <Row href="help" title="help">
+            if you are new!
+          </Row>
+          <Row href="about" title="about">
+            to learn more about me
+          </Row>
+          <Row title="back">to go back</Row>
+          <Row title="fours" href="https://www.connectfour.xyz/">
+            to play fours
+          </Row>
+          <Row title="q" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+            to exit
+          </Row>
         </div>
 
         <span className="text-center">Where you can find me</span>
 
         <div className="flex flex-col self-stretch mb-12">
-          <Row title="github">for my github profile</Row>
-          <Row title="email">to get my email</Row>
+          <Row title="github" href="https://github.com/buschco">
+            for my github profile
+          </Row>
+          <Row title="email" href="mailto:colin@busch.dev">
+            to get my email
+          </Row>
         </div>
       </div>
-
-      <input
-        ref={inputRef}
-        value={command ?? ""}
-        onChange={(e) => setCommand(e.target.value)}
-        className="absolute bottom-0 left-0 right-0 bg-bg text-normal h-6"
-        type="text"
-      />
-
-      {command == null && (
-        <div
-          className={[
-            "bg-bg3",
-            "absolute bottom-0 left-0 right-0",
-            "h-6 flex flex-row justify-between",
-          ].join(" ")}
-        >
-          <div className="flex flex-row">
-            <div className="uppercase bg-accent text-bg3 font-bold px-2">
-              normal
-            </div>
-            <div className="bg-bg2 text-muted px-2 hidden sm:block">main</div>
-            <div className="text-muted px-2 bg-bg2 sm:bg-transparent">
-              page.tsx
-            </div>
-          </div>
-          <div className="flex flex-row">
-            <div className="text-muted px-2 hidden sm:block">html</div>
-            <div className="bg-bg2 text-muted px-2 hidden sm:block">
-              {Math.round((pos.y / dim.y) * 100)}%
-            </div>
-            <div
-              className="uppercase bg-accent text-bg3 font-bold px-2 box-content"
-              style={{
-                width: Math.round(
-                  `${Math.round(dim.x / charWidth)}:${Math.round(dim.y / 24)}`
-                    .length * charWidth
-                ),
-              }}
-            >
-              {1 + Math.round(((pos.y / dim.y) * pos.y) / 24)}:
-              {1 + Math.round(((pos.x / dim.x) * pos.x) / charWidth)}
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }
