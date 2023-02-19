@@ -126,7 +126,7 @@ const Row = ({ title, children }: { title: string; children: string }) => (
 
 export default function Home2() {
   return (
-    <main className="container-sm mx-auto flex flex-col items-center gap-4">
+    <main className="flex flex-1 flex-col items-center justify-center gap-4 p-4">
       <div className="flex flex-col items-center">
         <h1 className="text-center mb-4">Hey, I am Colin Busch</h1>
 
@@ -149,6 +149,25 @@ export default function Home2() {
 
         <div className="flex flex-col self-stretch mb-12">
           <Row title="help">if you are new!</Row>
+        </div>
+      </div>
+
+      <div className="bg-bg3 absolute bottom-0 left-0 right-0 h-6 flex flex-row justify-between">
+        <div className="flex flex-row">
+          <div className="uppercase bg-accent text-bg3 font-bold px-2">
+            normal
+          </div>
+          <div className="bg-bg2 text-muted px-2 hidden sm:block">main</div>
+          <div className="text-muted px-2 bg-bg2 sm:bg-transparent">
+            page.tsx
+          </div>
+        </div>
+        <div className="flex flex-row">
+          <div className="text-muted px-2 hidden sm:block">typescript.tsx</div>
+          <div className="bg-bg2 text-muted px-2 hidden sm:block">95%</div>
+          <div className="uppercase bg-accent text-bg3 font-bold px-2">
+            166:75
+          </div>
         </div>
       </div>
     </main>
