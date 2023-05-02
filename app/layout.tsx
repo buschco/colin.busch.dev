@@ -1,4 +1,5 @@
 "use client";
+import { Analytics } from "@vercel/analytics/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -82,6 +83,7 @@ export default function RootLayout({
         onMouseMove={(e) => setPos({ x: e.clientX, y: e.clientY })}
       >
         {children}
+        <Analytics />
 
         <input
           ref={inputRef}
