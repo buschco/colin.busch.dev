@@ -72,22 +72,22 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <Analytics />
       <head />
       <body
         className={[
           "bg-bg text-normal font-mono",
           "mx-auto",
-          "flex flex-col h-screen",
+          "flex flex-col min-h-screen",
         ].join(" ")}
         ref={bodyRef}
-        onMouseMove={(e) => setPos({ x: e.clientX, y: e.clientY })}
+        onMouseMove={(e) => setPos({ x: e.pageX, y: e.pageY })}
       >
         {children}
-        <Analytics />
 
         <input
           ref={inputRef}
-          className="absolute bottom-0 left-0 right-0 bg-bg text-normal h-6"
+          className="sticky bottom-0 left-0 right-0 bg-bg text-normal h-6"
           type="text"
         />
 
@@ -95,7 +95,7 @@ export default function RootLayout({
           <div
             className={[
               "bg-bg3",
-              "absolute bottom-0 left-0 right-0",
+              "sticky bottom-0 left-0 right-0",
               "h-6 flex flex-row justify-between",
             ].join(" ")}
           >

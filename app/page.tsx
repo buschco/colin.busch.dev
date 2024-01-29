@@ -29,7 +29,7 @@ export default function Home2() {
   return (
     <main className="flex flex-1 flex-col justify-center gap-4 p-8">
       <div className="flex flex-col self-center items-center">
-        <h1 className="text-center">Hey, I am Colin Busch</h1>
+        <h1 className="text-center">Hey, I am Colin</h1>
 
         <div className="flex flex-1 flex-col mb-4">
           <h2 className="text-center mx-4">
