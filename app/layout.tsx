@@ -60,10 +60,6 @@ export default function RootLayout({
         if (cmd === "q") {
           window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_self");
         }
-
-        if (cmd === "fours") {
-          window.open("https://www.connectfour.xyz/", "_self");
-        }
       }
     };
     document.addEventListener("keydown", handleKeyDown);

@@ -36,8 +36,8 @@ export default function About() {
           So often I hear things like "Javascript bad: so slow", "Javascript
           bad: no real types", or "Javascript bad: everyday the reinvent
           themselves". And yes, Javascript and the ecosystem around it has some
-          downsides, but it also solves some things really well. No other
-          language to my knowledge, solves these points as comprehensively,
+          downsides, but it also solves some things really well. To my
+          knowledge, no other language solves these points as comprehensively,
           equally, or better than Javascript.
         </div>
 
@@ -47,12 +47,12 @@ export default function About() {
           If you develop frontends, you might find yourself adding spacings
           between two elements, improving the <I>onClick</I> handler of a button
           or fixing some texts. In most Javascript based Frameworks these
-          changes happen instant, thanks to features like hot reloading. In
-          SwiftUI for example you can get this real time experience, but only in
-          the Preview mode, similar to Storybook in Javascript land. Seeing
-          these changes in a real app, requires a recompile which takes around
-          10 seconds 😣. For backend systems written in Kotlin, waiting minutes
-          just to compile and run the project is completely normal.
+          changes happen instantly, thanks to features like hot reloading. In
+          SwiftUI, for example you can get this real time experience, but only
+          in the Preview mode, similar to Storybook in Javascript land. Seeing
+          these changes in an actual app, requires a recompile which takes
+          around 10 seconds 😣. For backend systems written in Kotlin, waiting
+          minutes just to compile and run the project is entirely normal.
         </div>
 
         <h2 className="text-func font-bold">## Intuitive types</h2>
@@ -60,10 +60,10 @@ export default function About() {
         <div>
           <div>
             I never came across any language that made it so easy for union
-            types like Javascript types systems (Flow/Typescript). The use case
+            types like Javascript type systems (Flow/Typescript). The use case
             is simple: A <S>Message</S> can either be a <S>Greeting</S> or a{" "}
             <S>Reaction</S>.
-            <pre className="py-4 flex flex-col">
+            <pre className="py-4 flex flex-col overflow-x-auto">
               <M>{"//"} typescript</M>
               {[
                 {
@@ -155,11 +155,11 @@ export default function About() {
             </pre>
             If you ever want to add the <I>text</I> property to a{" "}
             <S>Reaction</S> you only have to touch the code that is relevant to
-            this change (<F>displayText</F>) and and follow the errors that Flow
-            or Typescript gives you. Other languages tend to make some
-            inheritance or abstract stuff which results in boilerplate code
-            which is harder to understand.
-            <pre className="py-4 flex flex-col">
+            this change (<F>displayText</F>) and follow the errors that Flow or
+            Typescript gives you. Other languages tend to make some inheritance
+            or abstract stuff which results in boilerplate code which is harder
+            to understand.
+            <pre className="py-4 flex flex-col overflow-x-auto">
               <M>{"//"} kotlin</M>
               <div>
                 <S>sealed</S> <P>interface</P> <S>MessageBase</S> {"{"}
@@ -218,11 +218,11 @@ export default function About() {
             work with. Most of the times I even don't care if it is an{" "}
             <C>Int</C> or a <C>float</C>. I never cared if the number is an{" "}
             <C>int</C>, <C>int8</C>, <C>int16</C>, <C>int32</C> or <C>int64</C>.
-            Take this example: You have a <I>width</I> and and fixed list of
-            entries and want to calculate the space for each entry. In Swift for
-            example you have to convert <I>count</I> to a <C>Double</C> just to
-            be able to perform the division.
-            <pre className="py-4 flex flex-col">
+            Take this example: You have a <I>width</I> and fixed list of entries
+            and want to calculate the space for each entry. In Swift for example
+            you have to convert <I>count</I> to a <C>Double</C> just to be able
+            to perform the division.
+            <pre className="py-4 flex flex-col overflow-x-auto">
               <M>{"//"} swift</M>
               <div>
                 <P>let</P> <I>width</I> = <C>100.0</C>
@@ -242,9 +242,9 @@ export default function About() {
                 <S>bars</S>.<I>count</I>)
               </div>
             </pre>
-            The worst part is, if you divide two <C>Int</C>s and Kotlin won't
-            even warn you about the hidden rounding it will perform:
-            <pre className="py-4 flex flex-col">
+            The worst part is, if you divide two <C>Int</C>s, Kotlin won't even
+            warn you about the hidden rounding it will perform:
+            <pre className="py-4 flex flex-col overflow-x-auto">
               <M>{"//"} kotlin</M>
               <div>
                 <P>val</P> <I>bars</I> ={" listOf("}
@@ -261,7 +261,7 @@ export default function About() {
                 <I>bars</I>.<I>size</I>
               </div>
             </pre>
-            The average here is not <C>3</C> it is <C>3.5</C> 😐
+            The average here is not <C>3</C>; it is <C>3.5</C> 😐
           </div>
           <div>
             I agree that different types for numbers can help you to improve the
@@ -274,31 +274,31 @@ export default function About() {
         <div>
           Tools like ESlint, Prettier, Flow and Typescript are very very good.
           They integrate with your editor well thanks to their open APIs. If you
-          want you can you can write your own LSP in less than an hour and have
-          custom completion for your special use case, write ESlint rule to
-          enforce something or codemod your entire codebase with jscodeshift. It
-          seems like Javascript ecosystem is so thriving (some might say to much
+          want you can write your own LSP in less than an hour and have custom
+          completion for your special use case, write ESlint rule to enforce
+          something or codemod your entire codebase with jscodeshift. It seems
+          like the Javascript ecosystem is so thriving (some might say to much
           thriving 😄) because there is no Company behind it trying to sell you
           some IDE or Platform. If you write Kotlin, you might find yourself in
-          IDEA with their integrated linter. You can't check the code with their
-          linter on your CI thus you won't be able to enforce these rules
-          (neovim or VSCode user won't get the linters warnings and errors
-          anyway 🤷). I think languages like Swift or Go do a much better job
-          here. Maybe because they saw what a thriving ecosystem can arise, if
-          you welcome other developers instead of monetizing them.
+          IntelliJ IDEA with their integrated linter. You can't check the code
+          with their linter on your CI thus you won't be able to enforce these
+          rules (neovim or VSCode users won't get the linters' warnings and
+          errors anyway 🤷). I think languages like Swift or Go do a much better
+          job here. Maybe because they saw what a thriving ecosystem can arise,
+          if you welcome other developers instead of monetizing them.
         </div>
 
         <h2 className="text-func font-bold">## Browsers</h2>
 
         <div>
-          Javascript might have some downsides, but for me it seems overkill to
+          Javascript might have some downsides, but for me, it seems overkill to
           compile your favorite language to Javascript just to run in the
-          browser. You are not solving a problem, you are creating so many
-          sources for problems. I don't see the benefit of starting a Browser
-          based app with Kotlin just so you don't have to write Javascript.
-          Every API from the browser or any package you add from npm is
-          documented and written in Javascript. You can't escape Javascript as
-          long as it is the used language in browsers.
+          browser. You are not solving a problem; you are creating so many
+          sources for problems. I don't see the benefit of starting a
+          browser-based app with Kotlin just so you don't have to write
+          Javascript. Every API from the browser or any package you add from npm
+          is documented and written in Javascript. You can't escape Javascript
+          as long as it is the used language in browsers.
         </div>
 
         <div>Please show me a language that nails these points.</div>

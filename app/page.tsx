@@ -47,9 +47,8 @@ export default function Home2() {
           <Row href="about" title="about">
             to learn more about me
           </Row>
-          <Row title="back">to go back</Row>
-          <Row title="fours" href="https://www.connectfour.xyz/">
-            to play fours
+          <Row title="jsgood" href="js-good">
+            to think about JS
           </Row>
           <Row title="q" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             to exit
@@ -60,10 +59,7 @@ export default function Home2() {
 
         <div className="flex flex-col self-stretch mb-12">
           <Row title="github" href="https://github.com/buschco">
-            to my github profile
-          </Row>
-          <Row title="email" href="mailto:colin@busch.dev">
-            to get my email
+            to go to my github
           </Row>
         </div>
       </div>
