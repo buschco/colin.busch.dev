@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Fragment, HTMLProps, ReactElement, ReactNode } from "react";
 
 export type HProps<HTMLElementType, CustomProps> = Pick<
@@ -23,6 +24,10 @@ const C = colored("text-cons");
 const S = colored("text-str");
 const P = colored("text-special");
 const M = colored("text-muted");
+
+export const metadata: Metadata = {
+  title: "js good?",
+};
 
 export default function About() {
   return (

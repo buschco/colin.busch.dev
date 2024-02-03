@@ -41,14 +41,24 @@ export default function RootLayout({
       if (event.key === "Enter") {
         inputRef.current?.blur();
 
-        const cmd = inputRef.current?.value?.replaceAll(":", "");
+        const cmd = inputRef.current?.value?.replaceAll(":", "").trim();
         if (inputRef.current?.value != null) {
           inputRef.current.value = "";
         }
         setCommand(false);
+
+        if (cmd === "home") {
+          router.push("/");
+        }
+
+        if (cmd === "jsgood") {
+          router.push("/js-good");
+        }
+
         if (cmd === "about") {
           router.push("/about");
         }
+
         if (cmd === "help") {
           router.push("/help");
         }

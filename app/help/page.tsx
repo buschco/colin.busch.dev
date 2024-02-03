@@ -1,12 +1,12 @@
 export default function Help() {
   return (
-    <main className="flex flex-1 flex-col gap-4 p-8">
-      <div className="flex flex-col">
-        <h1 className="mb-4 text-center">Help - colin.busch.dev</h1>
-        <div>This website is a homage to VI based editors.</div>
+    <main className="container flex-1 lg:w-1/2 mx-auto p-8">
+      <div className="flex flex-col gap-8">
+        <h1 className="mb-4 font-bold text-special"># Help</h1>
+        <div>This website is a homage to the vi/vim/neovim editor.</div>
         <div>
-          There is a running joke that people are unable to exit them, so why
-          not not make a website behave like VI ¯\_(ツ)_/¯
+          There is a running joke that people are unable to exit vi/vim/neovim,
+          so why not make a website behave like VI?
         </div>
       </div>
     </main>
