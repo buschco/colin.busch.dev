@@ -90,9 +90,9 @@ export default function About() {
                 },
               ].map((e) => (
                 <div key={e.name}>
-                  <P>type</P> <S>{e.name}</S>
+                  <P>type</P> <S>{e.name}</S> = {e.and && <S>{e.and}</S>}
                   {e.and && <F> & </F>}
-                  {e.and && <S>{e.and}</S>} = {e.props.length && "{ "}
+                  {e.props.length && "{ "}
                   {e.props.map((p, i, a) => (
                     <Fragment key={p.name}>
                       <I>{p.name}</I>: <S>{p.value}</S>
@@ -161,10 +161,15 @@ export default function About() {
             If you ever want to add the <I>text</I> property to a{" "}
             <S>Reaction</S> you only have to touch the code that is relevant to
             this change (<F>displayText</F>) and follow the errors that Flow or
-            Typescript gives you. Other languages tend to make some inheritance
-            or abstract stuff which results in boilerplate code which is harder
-            to understand.
-            <pre className="py-4 flex flex-col overflow-x-auto">
+            Typescript gives you. Other languages tend to make this harder to
+            accomplish, which results in boilerplate code which is more
+            challenging to comprehend. Sometimes union types including
+            primitives (<P>type</P> <S>UserOrId</S> = <S>User</S> <F>|</F>{" "}
+            <S>string</S>, or <P>type</P> <S>Padding</S> = <S>number</S>{" "}
+            <F>|</F> <S>"small"</S>) are simply not supported.
+            <div />
+            {/* 
+           <pre className="py-4 flex flex-col overflow-x-auto">
               <M>{"//"} kotlin</M>
               <div>
                 <S>sealed</S> <P>interface</P> <S>MessageBase</S> {"{"}
@@ -219,6 +224,7 @@ export default function About() {
                 ) : <S>MessageBase</S>
               </div>
             </pre>
+            */}
             I also think having a handful of primitive types is much easier to
             work with. Most of the times I even don't care if it is an{" "}
             <C>Int</C> or a <C>float</C>. I never cared if the number is an{" "}
@@ -269,8 +275,9 @@ export default function About() {
             The average here is not <C>3</C>; it is <C>3.5</C> 😐
           </div>
           <div>
-            I agree that different types for numbers can help you to improve the
-            performance, but most of the time I just want code that works.
+            I agree that different types for numbers, or the lack of union types
+            support can help you to improve the performance, but most of the
+            time I just want code that works and want to understand it quick.
           </div>
         </div>
 
@@ -296,17 +303,17 @@ export default function About() {
         <h2 className="text-func font-bold">## Browsers</h2>
 
         <div>
-          Javascript might have some downsides, but for me, it seems overkill to
-          compile your favorite language to Javascript just to run in the
-          browser. You are not solving a problem; you are creating so many
-          sources for problems. I don't see the benefit of starting a
-          browser-based app with Kotlin just so you don't have to write
-          Javascript. Every API from the browser or any package you add from npm
-          is documented and written in Javascript. You can't escape Javascript
-          as long as it is the used language in browsers.
+          Javascript might have some downsides, but it seems overkill to compile
+          your favorite language to Javascript just to run in the browser. You
+          are not solving a problem; you are creating so many sources for
+          problems. I don't see the benefit of starting a browser-based app with
+          Kotlin just so you don't have to write Javascript. Every API from the
+          browser or any package you add from npm is documented and written in
+          Javascript. You can't escape Javascript as long as it is the used
+          language in browsers.
         </div>
 
-        <div>Please show me a language that nails these points.</div>
+        <div>So, please show me a language that nails these points.</div>
       </div>
     </main>
   );
